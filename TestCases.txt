@@ -1,0 +1,127 @@
+1.Login to admin panel with valid credentials and check whether the dashboard is visible-done
+2.Login with invalid credentials and check whether the error message is displayed-done
+_____________________
+Admin Tab Test cases
+______________________
+###User Management###
+3.Go to admin tab and check whether the user management text and system users list is visible-done
+4.Search system users with all the filters and verify that the search results match-done
+5.Search system user by username only and verify the search result-done
+6.Filter all the admin users and verify only admin users are displayed-done
+7.Filter all the ESS users and verify only the ESS users are displayed-done
+8.Search employee by employee name and check whether the matching suggestions are displayed-done
+9.Filter all the enabled users and verify that only enabled users are displayed-done
+10.Filter all the disabled users and verify that only disabled users are displayed-done
+11.Test whether the reset button works properly-done
+12.Test whether the admin can add a new admin user and verify that the new user is visible on the users list-done
+13.Test whether the admin can add a new ESS user and verify that the new user is visible on the users list-done
+14.Test whether the admin can edit a user
+15.Test whether the admin can delete a user
+16.Test whether multiple users can be selected and deleted at once
+###Job - Job Titles###
+17.Select job titles under Job dropdown and check whether the job titles text and title list is visible
+18.Test whether the admin can add a new job title and verify it's visible on the titles list
+19.Test whether the admin can edit an existing job title
+20.Test whether the admin can delete an existing job title and verify it's deleted
+21.Test whether multiple titles can be selected and deleted at once
+###Job - Pay Grades###
+22.Select pay grades from the job dropdown list and test whether the Pay Grade text and pay grade list in visible
+23.Test whether the admin can add a new pay grade and verify that it's visible on the list
+24.Test whether the admin can edit an existing pay grade and verify it's updated on the list
+25.Test whether the admin can delete an existing pay grade and verify that it's not visible on the list
+26.Test whether multiple pay grades can be selected and deleted at once
+###Job - Employment Status###
+27.Select employment status from job dropdown and check whether Employment Status text and employment status list is visible
+28.Test whether the admin can add a new employment status and verify that it's visible on the list
+29.Test whether the admin can edit an existing employment status and verify it's updated on the list
+30.Test whether the admin can delete an existing employment status and verify that it's not visible on the list
+31.Test whether multiple employment statuses can be selected and deleted at once
+###Job - Job Categories###
+32.Select job categories from job dropdown and check whether Job Categories text and job categories list is visible
+33.Test whether the admin can add a new job category and verify that it's visible on the list
+34.Test whether the admin can edit an existing job category and verify it's updated on the list
+35.Test whether the admin can delete an existing job category and verify that it's not visible on the list
+36.Test whether multiple job categories can be selected and deleted at once
+###Job - Work Shifts###
+37.Select work shifts from job dropdown and check whether Work Shifts text and work shifts list is visible
+38.Test whether the admin can add a new work shift and verify that it's visible on the list
+39.Test whether the admin can edit an existing work shift and verify it's updated on the list
+40.Test whether the admin can delete an existing work shift and verify that it's not visible on the list
+41.Test whether multiple work shifts can be selected and deleted at once
+###Organization - General Information###
+42.Select General Information from organization dropdown and verify that General Information text is visible
+43.Verify that edit option is disabled
+###Organization - Locations###
+44.Select Locations from Organization dropdown and verify that Locations text and locations list is visible
+45.Search a location by name and verify matching results are displayed
+46.Search a location by country and verify that matching results are displayed
+47.Test whether the admin can add a new location and it's displayed on the locations list
+48.Test whether the admin can edit an existing location and verify that it's updated on the list
+49.Test whether the admin can delete an existing location and verify that it's not visible on the list
+50.Test whether multiple locations can be selected and deleted at once
+###Organization - Structure###
+51.Select Structure from Organization dropdown and test whether Organization Structure text is visible
+52.Test whether the edit option is disabled
+###Qualifications - Skills###
+53.Select Skills from Qualifications dropdown and verify that Skills text and skills list is visible
+54.Test whether a new skill can be added and it's visible on the skills list
+55.Test whether an existing skill can be edited and it's updated on the list
+56.Test whether an existing skill can be deleted and it's removed from the list
+57.Test whether multiple skills can be selected and deleted at once
+###Qualifications - Education###
+58.Select Education from Qualifications dropdown and verify that Education text and education list is visible
+59.Test whether a new education can be added and it's visible on the education list
+60.Test whether an existing education can be edited and it's updated on the list
+61.Test whether an existing education can be deleted and it's removed from the list
+62.Test whether multiple educations can be selected and deleted at once
+###Qualifications - Licenses###
+63.Select Licenses from Qualifications dropdown and verify that Licenses text and license list is visible
+64.Test whether a new license can be added and it's visible on the licenses list
+65.Test whether an existing license can be edited and it's updated on the list
+66.Test whether an existing license can be deleted and it's removed from the list
+67.Test whether multiple licenses can be selected and deleted at once
+###Qualifications - Languages###
+63.Select Languages from Qualifications dropdown and verify that Languages text and languages list is visible
+64.Test whether a new language can be added and it's visible on the languages list
+65.Test whether an existing language can be edited and it's updated on the list
+66.Test whether an existing language can be deleted and it's removed from the list
+67.Test whether multiple languages can be selected and deleted at once
+###Qualifications - Memberships###
+63.Select Memberships from Qualifications dropdown and verify that Memberships text and memberships list is visible
+64.Test whether a new membership can be added and it's visible on the memberships list
+65.Test whether an existing membership can be edited and it's updated on the list
+66.Test whether an existing membership can be deleted and it's removed from the list
+67.Test whether multiple memberships can be selected and deleted at once
+###Nationalities###
+68.Select Nationalities and verify that Nationalities text and nationality list is visible
+69.Test whether a new nationality can be added and it's visible on the memberships list
+70.Test whether an existing nationality can be edited and it's updated on the list
+71.Test whether an existing nationality can be deleted and it's removed from the list
+72.Test whether multiple nationalities can be selected and deleted at once
+###Configuration - Localization###
+73.Select Localization from Configuration dropdown and check whether Localization is displayed
+74.Verify that the language is English (United States) and Date Format is yyyy-dd-mm ( 2025-26-03 )
+_____________________
+PIM Tab Test cases
+_____________________
+###Employee List###
+75.Click on PIM tab and check whether the Employee Information text and employees list is visible
+76.Search employee by name and verify that the matching result is displayed
+77.Search employee by employee id and verify that the matching result is displayed
+78.Search employees by employment status and verify that the matching results are displayed
+79.Search employees by supervisor's name and verify that the matching results are displayed
+80.Search employees by job title and verify that the matching results are displayed
+81.Search employees by sub-unit and verify that the matching results are displayed
+82.Test whether the admin can add a new employee and verify that the new user is visible on the list
+83.Test when the admin search and view the employee profile, employee's name is displayed on the top
+84.Test whether the admin can edit employee's profile and verify it's updated
+85.Test whether the admin can delete an existing employee and verify that the profile is deleted
+
+
+
+
+
+
+
+
+
