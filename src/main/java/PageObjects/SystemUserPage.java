@@ -93,6 +93,30 @@ public class SystemUserPage extends AbstractComponent {
     @FindBy(xpath = "//*[@class='oxd-table-card']/div/div[3]/div")
     List<WebElement> systemUserRolesList;
 
+    @FindBy(css = ".oxd-table-cell-actions .oxd-icon-button:nth-of-type(1)")
+    List<WebElement> deleteBtnList;
+
+    @FindBy(css = ".orangehrm-text-center-align")
+    WebElement deleteConfirmationText;
+
+    @FindBy(xpath = "//button[text()=' Yes, Delete ']")
+    WebElement dialogBoxDeleteBtn;
+
+    @FindBy(css = ".oxd-sheet")
+    WebElement confirmationDialogueBox;
+
+    @FindBy(css = ".oxd-text--toast-message")
+    WebElement deleteSuccessToastMsge;
+
+    @FindBy(css = ".oxd-table-body .oxd-checkbox-input")
+    List<WebElement> userSelectCheckbox;
+
+    @FindBy(xpath = "//button[text()=' Delete Selected ']")
+    WebElement deleteSelectedBtn;
+
+    @FindBy(css = ".orangehrm-vertical-padding")
+            WebElement verticalPadding;
+
     By filteredUserRole = By.xpath("(//div[@class='oxd-table-card']/div/div)[3]");
 
     By filteredUserStatus = By.xpath("(//div[@class='oxd-table-card']/div/div)[5]");
@@ -140,7 +164,7 @@ public class SystemUserPage extends AbstractComponent {
 
     public boolean verifyUserSearchResult(String username, String role, String employeeName, String status) {
         boolean flag = false;
-        scrollToList(filteredUser);
+        scrollDownToElement(filteredUser);
         if (filteredUser.isDisplayed() &&
                 searchResultUsername.getText().equalsIgnoreCase(username) &&
                 searchResultUserRole.getText().equalsIgnoreCase(role) &&
@@ -153,7 +177,7 @@ public class SystemUserPage extends AbstractComponent {
 
     public boolean verifyUsernameInSearchResult(String username) {
         boolean flag = false;
-        scrollToList(filteredUser);
+        scrollDownToElement(filteredUser);
         if (filteredUser.isDisplayed() && searchResultUsername.getText().equalsIgnoreCase(username)) {
             flag = true;
         }
@@ -162,7 +186,7 @@ public class SystemUserPage extends AbstractComponent {
     }
 
     public boolean verifyUserRoleInSearchResult(String role) {
-        scrollToList(resultContainer);
+        scrollDownToElement(resultContainer);
         waitForWebElementToAppear(resultContainer);
         return filteredUserList.stream().anyMatch(s -> s.findElement(filteredUserRole).getText().equalsIgnoreCase(role));
     }
@@ -172,7 +196,7 @@ public class SystemUserPage extends AbstractComponent {
     }
 
     public boolean verifyStatusInSearchResult(String status) throws InterruptedException {
-        scrollToList(resultContainer);
+        scrollDownToElement(resultContainer);
         Thread.sleep(2000);
         boolean flag = false;
         for (WebElement filteredUser : filteredUserList) {
@@ -208,7 +232,7 @@ public class SystemUserPage extends AbstractComponent {
 
     public boolean verifyNewlyAddedUser(String username) {
         waitForWebElementToAppear(filterSection);
-        scrollToList(resultContainer);
+        scrollDownToElement(resultContainer);
         waitForWebElementToAppear(resultContainer);
         boolean flag = false;
         flag = systemUsersNamesList.stream().anyMatch(o -> o.getText().equalsIgnoreCase(username));
@@ -217,11 +241,13 @@ public class SystemUserPage extends AbstractComponent {
     }
 
     public EditUserPage editSystemUser(String username) {
-        scrollToList(resultContainer);
+        scrollDownToElement(resultContainer);
         waitForWebElementToAppear(resultContainer);
         for (int i = 0; i < systemUsersNamesList.size(); i++) {
             String editableUsername = systemUsersNamesList.get(i).getText();
             if (editableUsername.equalsIgnoreCase(username)) {
+//                scrollDownToElement(systemUsersNamesList.get(i));
+//                waitForWebElementToAppear(systemUsersNamesList.get(i));
                 for (int j = i; j < editBtnList.size(); j++) {
                     editBtnList.get(j).click();
 
@@ -233,26 +259,87 @@ public class SystemUserPage extends AbstractComponent {
         return editUserPage;
     }
 
-    public boolean verifyUserUpdate(String username ,String role)
-    {
-        boolean flag=false;
-        scrollToList(resultContainer);
-        waitForWebElementToAppear(resultContainer);
-        for(int i=0;i<systemUsersNamesList.size();i++)
-        {
-           String systemUsername =  systemUsersNamesList.get(i).getText();
-           if(systemUsername.equalsIgnoreCase(username))
-           {
-               String updatedRole = systemUserRolesList.get(i).getText();
-               if(updatedRole.equalsIgnoreCase(role))
-               {
-                   flag=true;
-               }
-               break;
-           }
+    public boolean verifyUserUpdate(String username, String role) {
+        EditUserPage editUserPage = new EditUserPage(driver);
+        editUserPage.waitTillToastMsgeDissapear();
+        boolean flag = false;
+        scrollDownToElement(resultContainer);
+        for (int i = 0; i < systemUsersNamesList.size(); i++) {
+            String systemUsername = systemUsersNamesList.get(i).getText();
+            if (systemUsername.equalsIgnoreCase(username)) {
+                String updatedRole = systemUserRolesList.get(i).getText();
+                if (updatedRole.equalsIgnoreCase(role)) {
+                    flag = true;
+                }
+                break;
+            }
         }
         return flag;
     }
 
 
+    public void clickDeleteUserBtn(String username) {
+        scrollDownToElement(resultContainer);
+        waitForWebElementToAppear(resultContainer);
+        for (int p = 0; p < systemUsersNamesList.size(); p++) {
+            if (systemUsersNamesList.get(p).getText().equalsIgnoreCase(username)) {
+                for (int k = p; k < deleteBtnList.size(); k++) {
+                    deleteBtnList.get(k).click();
+                    break;
+                }
+            }
+        }
+    }
+
+    public void confirmDelete() {
+        waitForWebElementToAppear(dialogBoxDeleteBtn);
+        dialogBoxDeleteBtn.click();
+    }
+
+    public String getDeleteConfirmationMsgeTxt() {
+        return deleteConfirmationText.getText();
+    }
+
+    public boolean verifyDeletedUserNotVisible(String deletedUsername) {
+        return systemUsersNamesList.stream().noneMatch(e -> e.getText().equalsIgnoreCase(deletedUsername));
+    }
+
+    public String getDeleteSuccessToastTest() {
+        waitForWebElementToAppear(deleteSuccessToastMsge);
+        return deleteSuccessToastMsge.getText();
+    }
+
+    public void selectMultipleUsers(String[] usernames) {
+        scrollDownToElement(resultContainer);
+        waitForWebElementToAppear(resultContainer);
+        for (String username : usernames) {
+            for (int i = 0; i < systemUsersNamesList.size(); i++) {
+                if (systemUsersNamesList.get(i).getText().equalsIgnoreCase(username)) {
+                    int j = i;
+                    while (j < userSelectCheckbox.size()) {
+                        userSelectCheckbox.get(j).click();
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+
+    public void clickDeleteSelectedBtn() {
+        moveToTop();
+        waitForWebElementToAppear(deleteSelectedBtn);
+        deleteSelectedBtn.click();
+    }
+
+    public boolean verifyDeletedUsersNotVisible(String[] usernames) {
+        boolean notVisible = false;
+
+        for (String username : usernames) {
+            notVisible = systemUsersNamesList.stream().noneMatch(e -> e.getText().equalsIgnoreCase(username));
+        }
+        return notVisible;
+    }
+
 }
+

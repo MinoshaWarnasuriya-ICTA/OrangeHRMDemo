@@ -30,7 +30,7 @@ public class AdminPage extends AbstractComponent {
 
     public boolean checkVisibilityOfUsersList()
     {
-        scrollToList(list);
+        scrollDownToElement(list);
         boolean flag = false;
         if(list.isDisplayed() && !userList.isEmpty())
         {

@@ -1,6 +1,7 @@
 package AbstractComponents;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.*;
 import org.openqa.selenium.support.*;
 import org.openqa.selenium.support.ui.*;
 
@@ -43,11 +44,22 @@ public Properties getGlobalData() throws IOException {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void scrollToList(WebElement list)
+    public void scrollDownToElement(WebElement ele)
     {
         JavascriptExecutor js = (JavascriptExecutor)driver;
-        js.executeScript("arguments[0].scrollIntoView();", list);
+        js.executeScript("arguments[0].scrollIntoView();", ele);
     }
 
+    public void waitForElementToDissapear(WebElement element)
+    {
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.invisibilityOf(element));
+    }
 
+    public void moveToTop()
+    {
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("window.scrollTo(0,0)");
+
+    }
 }

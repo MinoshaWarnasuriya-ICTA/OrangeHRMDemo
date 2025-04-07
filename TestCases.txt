@@ -15,9 +15,9 @@ ______________________
 11.Test whether the reset button works properly-done
 12.Test whether the admin can add a new admin user and verify that the new user is visible on the users list-done
 13.Test whether the admin can add a new ESS user and verify that the new user is visible on the users list-done
-14.Test whether the admin can edit a user
-15.Test whether the admin can delete a user
-16.Test whether multiple users can be selected and deleted at once
+14.Test whether the admin can edit a user-done
+15.Test whether the admin can delete a user-done
+16.Test whether multiple users can be selected and deleted at once-done
 ###Job - Job Titles###
 17.Select job titles under Job dropdown and check whether the job titles text and title list is visible
 18.Test whether the admin can add a new job title and verify it's visible on the titles list

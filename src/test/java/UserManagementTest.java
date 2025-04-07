@@ -157,46 +157,77 @@ public class UserManagementTest extends BaseTest {
     }
 
     @Test
-public void addESSUser() throws IOException, InterruptedException {
+    public void addESSUser() throws IOException, InterruptedException {
     /*Test whether the admin can add a new ESS user and
      verify that the new user is visible on the users list*/
-    String role = "ESS";
-    String empNameHint = "Krish";
-    String status = "Enabled";
-    String username = "krishr";
-    String password = "Emppw@123";
-    dashBoard = loginPage.login(loginPage.getUsername(), loginPage.getPassword());
-    adminPage = dashBoard.goToAdminPage();
-    systemUserPage = adminPage.goToSystemUsersPage();
-    addUserPage = systemUserPage.clickAddBtn();
-    addUserPage.selectUserRole(role);
-    addUserPage.enterEmployeeName(empNameHint);
-    addUserPage.selectStatus(status);
-    addUserPage.enterUsername(username);
-    addUserPage.enterPassword(password);
-    addUserPage.confirmPassword(password);
-    systemUserPage = addUserPage.clickSave();
-    Assert.assertTrue(systemUserPage.verifyNewlyAddedUser(username));
-}
+        String role = "ESS";
+        String empNameHint = "Krish";
+        String status = "Enabled";
+        String username = "krishr";
+        String password = "Emppw@123";
+        dashBoard = loginPage.login(loginPage.getUsername(), loginPage.getPassword());
+        adminPage = dashBoard.goToAdminPage();
+        systemUserPage = adminPage.goToSystemUsersPage();
+        addUserPage = systemUserPage.clickAddBtn();
+        addUserPage.selectUserRole(role);
+        addUserPage.enterEmployeeName(empNameHint);
+        addUserPage.selectStatus(status);
+        addUserPage.enterUsername(username);
+        addUserPage.enterPassword(password);
+        addUserPage.confirmPassword(password);
+        systemUserPage = addUserPage.clickSave();
+        Assert.assertTrue(systemUserPage.verifyNewlyAddedUser(username));
+    }
 
-@Test
-public void editSystemUserRole() throws IOException, InterruptedException {
-    //Test whether the admin can edit a user
-    String username = "krichr";
-    String role = "Admin";
-    dashBoard = loginPage.login(loginPage.getUsername(), loginPage.getPassword());
-    adminPage = dashBoard.goToAdminPage();
-    systemUserPage = adminPage.goToSystemUsersPage();
-     editUserPage = systemUserPage.editSystemUser(username);
+    @Test
+    public void editSystemUserRole() throws IOException, InterruptedException {
+        //Test whether the admin can edit a user
+        String username = "janvic";
+        String role = "ESS";
+        String toastMsgeText = "Successfully Updated";
+        dashBoard = loginPage.login(loginPage.getUsername(), loginPage.getPassword());
+        adminPage = dashBoard.goToAdminPage();
+        systemUserPage = adminPage.goToSystemUsersPage();
+        editUserPage = systemUserPage.editSystemUser(username);
+        Assert.assertTrue(editUserPage.verifyEditUserPageVisibility());
+        editUserPage.updateRole(role);
+        systemUserPage = editUserPage.clickSave();
+        Assert.assertTrue(editUserPage.verifyToastMsgeDisplay());
+        Assert.assertEquals(editUserPage.getToastMsgeText(), toastMsgeText);
+        Assert.assertTrue(systemUserPage.verifyUserUpdate(username, role));
+    }
 
-     editUserPage.updateRole(role);
-//     systemUserPage = editUserPage.clickSave();
-//
-//     Assert.assertTrue(systemUserPage.verifyUserUpdate(username,role));
+    @Test
+    public void deleteSystemUser() throws IOException {
+        //Test whether the admin can delete a user
+        String username = "ashvi";
+        String expectedConfirmationMsge = "The selected record will be permanently deleted. Are you sure you want to continue?";
+        String expectedToastMsge = "Successfully Deleted";
+        dashBoard = loginPage.login(loginPage.getUsername(), loginPage.getPassword());
+        adminPage = dashBoard.goToAdminPage();
+        systemUserPage = adminPage.goToSystemUsersPage();
+        systemUserPage.clickDeleteUserBtn(username);
+        Assert.assertEquals(systemUserPage.getDeleteConfirmationMsgeTxt(), expectedConfirmationMsge);
+        systemUserPage.confirmDelete();
+        Assert.assertEquals(systemUserPage.getDeleteSuccessToastTest(), expectedToastMsge);
+        Assert.assertTrue(systemUserPage.verifyDeletedUserNotVisible(username));
+    }
 
+    @Test
+    public void deleteMultipleUsers() throws IOException, InterruptedException {
+        String[] usernames = {"testu", "ashwind"};
+        String expectedConfirmationMsge = "The selected record will be permanently deleted. Are you sure you want to continue?";
+        String expectedToastMsge = "Successfully Deleted";
+        dashBoard = loginPage.login(loginPage.getUsername(), loginPage.getPassword());
+        adminPage = dashBoard.goToAdminPage();
+        systemUserPage = adminPage.goToSystemUsersPage();
+        systemUserPage.selectMultipleUsers(usernames);
+        systemUserPage.clickDeleteSelectedBtn();
+        Assert.assertEquals(systemUserPage.getDeleteConfirmationMsgeTxt(), expectedConfirmationMsge);
+        systemUserPage.confirmDelete();
+        Assert.assertEquals(systemUserPage.getDeleteSuccessToastTest(), expectedToastMsge);
+        Assert.assertTrue(systemUserPage.verifyDeletedUsersNotVisible(usernames));
 
-
-}
-
+    }
 
 }
