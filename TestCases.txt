@@ -19,10 +19,10 @@ ______________________
 15.Test whether the admin can delete a user-done
 16.Test whether multiple users can be selected and deleted at once-done
 ###Job - Job Titles###
-17.Select job titles under Job dropdown and check whether the job titles text and title list is visible
-18.Test whether the admin can add a new job title and verify it's visible on the titles list
+17.Select job titles under Job dropdown and check whether the job titles text and title list is visible-done
+18.Test whether the admin can add a new job title and verify it's visible on the titles list-done
 19.Test whether the admin can edit an existing job title
-20.Test whether the admin can delete an existing job title and verify it's deleted
+20.Test whether the admin can delete an existing job title and verify it's deleted-done
 21.Test whether multiple titles can be selected and deleted at once
 ###Job - Pay Grades###
 22.Select pay grades from the job dropdown list and test whether the Pay Grade text and pay grade list in visible

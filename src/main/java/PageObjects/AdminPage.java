@@ -27,6 +27,15 @@ public class AdminPage extends AbstractComponent {
     @FindBy(xpath = "//a[text()='Users']/parent::li")
     WebElement usersOption;
 
+    @FindBy(xpath = "//span[text()='Job ']/parent::li")
+    WebElement jobDropdown;
+
+    @FindBy(xpath = "//span[text()='Job ']/parent::li/ul")
+    WebElement jobDropdownOptionsList;
+
+    @FindBy(xpath = "(//span[text()='Job ']/parent::li/ul/li)[1]")
+    WebElement jobTitles;
+
 
     public boolean checkVisibilityOfUsersList()
     {
@@ -46,7 +55,23 @@ public class AdminPage extends AbstractComponent {
         usersOption.click();
         SystemUserPage systemUserPage = new SystemUserPage(driver);
         return systemUserPage;
-
     }
+
+
+    public void clickJobDropdown(){
+    jobDropdown.click();
+    }
+
+    public JobTitles goToJobTitlesPage()
+    {
+        clickJobDropdown();
+        waitForWebElementToAppear(jobDropdownOptionsList);
+      jobTitles.click();
+        JobTitles jobTitles = new JobTitles(driver);
+       return jobTitles;
+    }
+
+
+
 
 }

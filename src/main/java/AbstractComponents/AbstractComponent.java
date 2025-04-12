@@ -62,4 +62,12 @@ public Properties getGlobalData() throws IOException {
         jse.executeScript("window.scrollTo(0,0)");
 
     }
+
+    public void updateTextWithAction(WebElement inputField,String newText)
+    {
+        Actions action = new Actions(driver);
+        waitForWebElementToAppear(inputField);
+        action.click(inputField).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.BACK_SPACE).sendKeys(newText).build().perform();
+
+    }
 }
