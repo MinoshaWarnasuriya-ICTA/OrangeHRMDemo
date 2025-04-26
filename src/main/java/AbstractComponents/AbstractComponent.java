@@ -18,6 +18,9 @@ public class AbstractComponent {
         PageFactory.initElements(driver,this);
     }
 
+    @FindBy(css = ".orangehrm-main-title")
+    WebElement pageTitle;
+
 
 public Properties getGlobalData() throws IOException {
      prop = new Properties();
@@ -68,6 +71,11 @@ public Properties getGlobalData() throws IOException {
         Actions action = new Actions(driver);
         waitForWebElementToAppear(inputField);
         action.click(inputField).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.BACK_SPACE).sendKeys(newText).build().perform();
+    }
 
+    public String getVisiblePageTitle()
+    {
+        waitForWebElementToAppear(pageTitle);
+       return pageTitle.getText();
     }
 }

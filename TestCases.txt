@@ -21,15 +21,15 @@ ______________________
 ###Job - Job Titles###
 17.Select job titles under Job dropdown and check whether the job titles text and title list is visible-done
 18.Test whether the admin can add a new job title and verify it's visible on the titles list-done
-19.Test whether the admin can edit an existing job title
+19.Test whether the admin can edit an existing job title-couldn't automate
 20.Test whether the admin can delete an existing job title and verify it's deleted-done
-21.Test whether multiple titles can be selected and deleted at once
+21.Test whether multiple titles can be selected and deleted at once-done
 ###Job - Pay Grades###
-22.Select pay grades from the job dropdown list and test whether the Pay Grade text and pay grade list in visible
-23.Test whether the admin can add a new pay grade and verify that it's visible on the list
-24.Test whether the admin can edit an existing pay grade and verify it's updated on the list
-25.Test whether the admin can delete an existing pay grade and verify that it's not visible on the list
-26.Test whether multiple pay grades can be selected and deleted at once
+22.Select pay grades from the job dropdown list and test whether the Pay Grade text and pay grade list is visible-done
+23.Test whether the admin can add a new pay grade and verify that it's visible on the list-done
+24.Test whether the admin can edit an existing pay grade name and verify it's updated on the list-done
+25.Test whether the admin can delete an existing pay grade and verify that it's not visible on the list-done
+26.Test whether multiple pay grades can be selected and deleted at once-done
 ###Job - Employment Status###
 27.Select employment status from job dropdown and check whether Employment Status text and employment status list is visible
 28.Test whether the admin can add a new employment status and verify that it's visible on the list

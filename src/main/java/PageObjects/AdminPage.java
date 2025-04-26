@@ -36,6 +36,8 @@ public class AdminPage extends AbstractComponent {
     @FindBy(xpath = "(//span[text()='Job ']/parent::li/ul/li)[1]")
     WebElement jobTitles;
 
+    @FindBy(css = ".oxd-dropdown-menu li a")
+    List<WebElement> jobDropdownOptions;
 
     public boolean checkVisibilityOfUsersList()
     {
@@ -69,6 +71,17 @@ public class AdminPage extends AbstractComponent {
       jobTitles.click();
         JobTitles jobTitles = new JobTitles(driver);
        return jobTitles;
+    }
+
+    public PayGradePage goToPayGradePage()
+    {
+        clickJobDropdown();
+        waitForWebElementToAppear(jobDropdownOptionsList);
+       WebElement payGradeOption =jobDropdownOptions.stream().filter(e->e.getText().equalsIgnoreCase("Pay Grades")).
+               findFirst().orElse(null);
+       payGradeOption.click();
+       PayGradePage payGrade = new PayGradePage(driver);
+       return payGrade;
     }
 
 
